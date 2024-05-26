@@ -20,8 +20,8 @@ class Database:
         supabase = st.connection(
             name=connection_name,
             type=SupabaseConnection,
-            url=os.environ.get("supabase_url"),
-            key=os.environ.get("supabase_key"),
+            url=os.environ.get("https://cktxttnewwifbwsigmlu.supabase.co"),
+            key=os.environ.get("72d0d8442b9d3896db0b0a813d2293bd6accc516eff6c0728f0bb691c9b0cb21"),
         )
         return supabase
 
