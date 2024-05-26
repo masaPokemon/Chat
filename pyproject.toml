@@ -3,7 +3,7 @@ name = "brains"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
-    { name = "papasim824", email = "papasim824@gmail.com" }
+    { name = "masaPokemon", email = "masa.gongon2011@gmail.com" }
 ]
 dependencies = [
     "extra-streamlit-components",
