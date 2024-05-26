@@ -72,7 +72,7 @@ class Database:
                     "persona": persona,
                     "name": name,
                 },
-                on_conflict="key",
+                on_conflict="72d0d8442b9d3896db0b0a813d2293bd6accc516eff6c0728f0bb691c9b0cb21",
             )
             .execute()
         )
@@ -86,7 +86,7 @@ class Database:
                     "time": 99999999999999999999,
                     "role": "assistant",
                 },
-                on_conflict="key",
+                on_conflict="72d0d8442b9d3896db0b0a813d2293bd6accc516eff6c0728f0bb691c9b0cb21",
             )
             .execute()
         )
