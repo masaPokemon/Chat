@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
         # React to user input
         if prompt := st.chat_input("user"):
-            if user := st.chat_input("message")
+            if user := st.chat_input("message"):
             c.execute(user, prompt)
             conn.commit
 
