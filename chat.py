@@ -75,6 +75,7 @@ if prompt := st.chat_input("What is up?"):
             message_placeholder.markdown(full_response + "▌") # レスポンスの途中結果を表示
         message_placeholder.markdown(full_response) # 最終レスポンスを表示
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+    add_data("user",prompt)
     st.session_state.Clear = True # チャット履歴のクリアボタンを有効にする
 
 # チャット履歴をクリアするボタンが押されたら、メッセージをリセット
