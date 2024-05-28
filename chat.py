@@ -9,12 +9,6 @@ if 'authentication_status' not in st.session_state:
 if __name__ == "__main__":
     # ログイン認証に成功すれば処理切り替え
     if st.session_state['authentication_status']:
-        # こにメインのアプリ機能を書く
-        if st.button("ログアウト"):
-            st.session_state['authentication_status'] = None
-            st.experimental_rerun()
-    else:
-        login.Login("db/user.db")
         
         # データベースに接続する
         conn = sqlite3.connect('ChatData.db')
@@ -26,7 +20,13 @@ if __name__ == "__main__":
 
         # React to user input
         if prompt := st.chat_input("user"):
-            if user := st.chat_input("message"):
             c.execute(user, prompt)
             conn.commit
+        # こにメインのアプリ機能を書く
+        if st.button("ログアウト"):
+            st.session_state['authentication_status'] = None
+            st.experimental_rerun()
+    else:
+        login.Login("db/user.db")
+        
 
