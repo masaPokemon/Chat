@@ -3,7 +3,7 @@ import streamlit as st
 
 st.title("ChatGPT by Streamlit") # タイトルの設定
 
-openai.api_key = 'your-api-key-here' # OpenAIのAPIキーを設定
+openai.api_key = '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' # OpenAIのAPIキーを設定
 
 # セッション内で使用するモデルが指定されていない場合のデフォルト値
 if "openai_model" not in st.session_state:
