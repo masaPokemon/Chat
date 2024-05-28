@@ -5,22 +5,12 @@ import sqlite3
 conn = sqlite3.connect('ChatData.db')
 c = conn.cursor()
 
-# データを表示する
-def show_data():
-    c.execute('SELECT * FROM users')
-    data = c.fetchall()
-    for d in data:
-        st.write(d)
 
 # データを追加する
 def add_data(name, age):
     c.execute('INSERT INTO users (name, age) VALUES (?, ?)', (name, age))
     conn.commit()
     st.write('Data added. Please reload page.')
-
-
-# データの表示
-show_data()
 
 # データの追加
 name = st.text_input('Name')
@@ -49,8 +39,8 @@ if "Clear" not in st.session_state:
     st.session_state.Clear = False
 
 # 以前のメッセージを表示
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+for message in c:
+    with st.chat_message(c["user"]):
         st.markdown(message["content"])
 
 # ユーザーからの新しい入力を取得
