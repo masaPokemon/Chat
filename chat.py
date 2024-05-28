@@ -10,6 +10,7 @@ for message in c:
     st.markdown(c)
 
 # React to user input
-if prompt := st.chat_input("message"):
+if prompt := st.chat_input("user"):
+    if user := st.chat_input("message")
     c.execute(user, prompt)
     conn.commit
