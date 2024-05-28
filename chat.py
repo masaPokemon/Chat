@@ -1,6 +1,7 @@
 import sqlite3
 import streamlit as st
 
+
 # データベースに接続する
 conn = sqlite3.connect('ChatData.db')
 c = conn.cursor()
