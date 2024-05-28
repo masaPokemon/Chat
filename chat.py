@@ -1,30 +1,9 @@
-import streamlit as st
-import sqlite3
-
-# データベースに接続する
-conn = sqlite3.connect('ChatData.db')
-c = conn.cursor()
-
-
-# データを追加する
-def add_data(name, age):
-    c.execute('INSERT INTO users (name, age) VALUES (?, ?)', (name, age))
-    conn.commit()
-    st.write('Data added. Please reload page.')
-
-# データの追加
-name = st.text_input('Name')
-age = st.number_input('Age')
-if st.button('Add data'):
-    add_data(name, age)
-
-# データベースをクローズする
-conn.close()
+import openai
 import streamlit as st
 
 st.title("ChatGPT by Streamlit") # タイトルの設定
 
-openai.api_key = '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' # OpenAIのAPIキーを設定
+openai.api_key = 'your-api-key-here' # OpenAIのAPIキーを設定
 
 # セッション内で使用するモデルが指定されていない場合のデフォルト値
 if "openai_model" not in st.session_state:
@@ -39,8 +18,8 @@ if "Clear" not in st.session_state:
     st.session_state.Clear = False
 
 # 以前のメッセージを表示
-for message in c:
-    with st.chat_message(c["user"]):
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
 # ユーザーからの新しい入力を取得
@@ -65,7 +44,6 @@ if prompt := st.chat_input("What is up?"):
             message_placeholder.markdown(full_response + "▌") # レスポンスの途中結果を表示
         message_placeholder.markdown(full_response) # 最終レスポンスを表示
     st.session_state.messages.append({"role": "assistant", "content": full_response})
-    add_data("user",prompt)
     st.session_state.Clear = True # チャット履歴のクリアボタンを有効にする
 
 # チャット履歴をクリアするボタンが押されたら、メッセージをリセット
@@ -75,4 +53,3 @@ if st.session_state.Clear:
         full_response = ""
         st.session_state.Clear = False # クリア状態をリセット
         st.experimental_rerun() # 画面を更新
-
