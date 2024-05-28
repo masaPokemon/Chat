@@ -15,17 +15,18 @@ if __name__ == "__main__":
             st.experimental_rerun()
     else:
         login.Login("db/user.db")
+        
+        # データベースに接続する
+        conn = sqlite3.connect('ChatData.db')
+        c = conn.cursor()
 
-# データベースに接続する
-conn = sqlite3.connect('ChatData.db')
-c = conn.cursor()
+        # Display chat messages from history on app rerun
+        for message in c:
+            st.markdown(c)
 
-# Display chat messages from history on app rerun
-for message in c:
-    st.markdown(c)
+        # React to user input
+        if prompt := st.chat_input("user"):
+            if user := st.chat_input("message")
+            c.execute(user, prompt)
+            conn.commit
 
-# React to user input
-if prompt := st.chat_input("user"):
-    if user := st.chat_input("message")
-    c.execute(user, prompt)
-    conn.commit
