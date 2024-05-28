@@ -11,5 +11,5 @@ for message in c:
 
 # React to user input
 if prompt := st.chat_input("message"):
-    c.excute(user, prompt)
+    c.execute(user, prompt)
     conn.commit
