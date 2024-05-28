@@ -1,4 +1,3 @@
-import sqlite3
 import streamlit as st
 
 import login
@@ -26,7 +25,10 @@ if __name__ == "__main__":
         if st.button("ログアウト"):
             st.session_state['authentication_status'] = None
             st.experimental_rerun()
+        
+        # こにメインのアプリ機能を書く
+        if st.button("ログアウト"):
+            st.session_state['authentication_status'] = None
+            st.experimental_rerun()
     else:
         login.Login("db/user.db")
-        
-
