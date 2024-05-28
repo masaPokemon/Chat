@@ -1,18 +1,31 @@
-FROM python:3.7.12-slim-buster
+FROM python:3.9
 
-WORKDIR /app
+# mecabのインストール
+RUN apt-get update && apt-get install -y \
+    mecab \
+    libmecab-dev \
+    mecab-ipadic-utf8 \
+    git \
+    make \
+    curl \
+    xz-utils \
+    file \
+    sudo \
+    wget
+  
+# neologdのインストール
+RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git && \
+    cd mecab-ipadic-neologd && \
+    ./bin/install-mecab-ipadic-neologd -n -y && \
+    echo dicdir = `mecab-config --dicdir`"/mecab-ipadic-neologd">/etc/mecabrc && \
+    cp /etc/mecabrc /usr/local/etc
 
-COPY requirements.txt .
+WORKDIR /opt/app-root/src
+COPY ./src /opt/app-root/src
 
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y ffmpeg && \
-    pip install -r requirements.txt
+# フォントのダウンロード
+RUN wget https://moji.or.jp/wp-content/ipafont/IPAexfont/ipaexg00401.zip
+RUN unzip ipaexg00401.zip && rm -f ipaexg00401.zip
 
-EXPOSE 8501
-
-COPY . /app
-
-ENTRYPOINT ["streamlit", "run"]
-
-CMD ["main.py"]
+# ライブラリのインストール
+RUN pip install streamlit
