@@ -5,7 +5,10 @@ import hashlib
 
 conn = sqlite3.connect('database.db')
 c = conn.cursor()
-user = st.text_input("ユーザー名")
+
+if user := st.text_input("ユーザー名"):
+	if password := st.text_input("パスワード"):
+		login_user(user,password)
 
 def make_hashes(password):
 	return hashlib.sha256(str.encode(password)).hexdigest()
