@@ -2,7 +2,6 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 import numpy as np
-import seaborn as sns
 from pycaret.datasets import get_data
 #ボストンデータを取得
 df = get_data('boston')
