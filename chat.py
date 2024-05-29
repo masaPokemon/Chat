@@ -1,8 +1,20 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
-import main
-main.input()
+import numpy as np
+import seaborn as sns
+
+from pycaret.datasets import get_data
+#ボストンデータを取得
+df = get_data('boston')
+
+# データベース名とテーブル名
+db_name = 'datasets.db'
+table_name = 'tips'
+
+# SQLiteに書き込む
+with sqlite3.connect(db_name) as conn:
+    df.to_sql(table_name, conn)
 #先ほど設定したDBの名前
 db_name = 'datasets.db'
 
