@@ -1,16 +1,25 @@
+import sqlite3
 import streamlit as st
+user = st.text_input("name")
+# データベースに接続する
+conn = sqlite3.connect('ChatData.db')
+c = conn.cursor()
+st.title("Echo Bot")
 
-import login
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-if 'authentication_status' not in st.session_state:
-    st.session_state['authentication_status'] = None
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-if __name__ == "__main__":
-    # ログイン認証に成功すれば処理切り替え
-    if st.session_state['authentication_status']:
-        # こにメインのアプリ機能を書く
-        if st.button("ログアウト"):
-            st.session_state['authentication_status'] = None
-            st.experimental_rerun()
-    else:
-        login.Login("db/user.db")
+# React to user input
+if prompt := st.chat_input("What is up?"):
+    # Display user message in chat message container
+    st.chat_message("user").markdown(prompt)
+    # Add user message to chat history
+    st.session_state.messages.append({"role": user, "content": prompt})
+    c.execute("role": user, "content": prompt)
+    conn.commit()
