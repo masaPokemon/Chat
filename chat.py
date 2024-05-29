@@ -1,48 +1,20 @@
 import streamlit as st
-import mysql.connector
 
-### ファイル読み込み
- 
-### DB接続
-cnx = mysql.connector.connect(host='localhost', user='root', password='', database='user.db')
-cnx2 = mysql.connector.connect(host='localhost', user='root', password='', database='ChatData.db')
- 
-### カーソル作成
-cursor = cnx.cursor()
+import main
+import lib
+import login
 
-### カーソル作成
-cursor2 = cnx.cursor() 
+# Lyaout Change
+st.set_page_config(page_title='owllwo', page_icon='owl',layout="wide")
+lib.config.remove_menu_footer()
 
-### INSERT文作成
-sql = "INSERT INTO weather_forecast ( date_time, pressure, temperature, humidity) VALUES (%s, %s, %s, %s)"
+# 共通のsessin state ログイン情報
+if 'authentication_status' not in st.session_state:
+    st.session_state['authentication_status'] = None
 
-user = st.text_input("name")
-# データベースに接続する
-c = conn.cursor()
-st.title("Echo Bot")
-
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Display chat messages from history on app rerun
-for message in cursor2:
-    st.markdown(message)
-
-# React to user input
-if prompt := st.chat_input("What is up?"):
-    # Display user message in chat message container
-    st.chat_message("user").markdown(prompt)
-    # Add user message to chat history
-    st.session_state.messages.append({"role": user, "content": prompt})
-    
-    ### データ挿入実行
-    cursor.execute(prompt)
-    conn.commit()
-
-
-### コミット
-cnx.commit()
- 
-### カーソルクローズ
-cursor.close()
+if __name__ == "__main__":
+    # ログイン認証に成功すればmain_appに切り替え
+    if st.session_state['authentication_status']:
+        app.app()
+    else:
+        obj_auth = login.Login("db/user.db")
