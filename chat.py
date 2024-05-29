@@ -16,7 +16,7 @@ def make_hashes(password):
 def check_hashes(password,hashed_text):
 	if make_hashes(password) == hashed_text:
 		return hashed_text
-    return False
+    return False;
 def create_user():
   c.execute('CREATE TABLE IF NOT EXISTS userstable(username TEXT,password TEXT)')
 
