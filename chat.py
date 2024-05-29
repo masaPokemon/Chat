@@ -3,9 +3,6 @@ import streamlit as st
 import main
 import login
 
-# Lyaout Change
-st.set_page_config(page_title='owllwo', page_icon='owl',layout="wide")
-lib.config.remove_menu_footer()
 
 # 共通のsessin state ログイン情報
 if 'authentication_status' not in st.session_state:
