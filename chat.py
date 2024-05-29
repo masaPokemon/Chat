@@ -1,7 +1,7 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
-from src.chat import main
+from chat import main
 main.input()
 #先ほど設定したDBの名前
 db_name = 'datasets.db'
