@@ -26,8 +26,8 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Display chat messages from history on app rerun
-for message in c:
-    st.markdown(c)
+for message in cursor2:
+    st.markdown(message)
 
 # React to user input
 if prompt := st.chat_input("What is up?"):
@@ -37,7 +37,7 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": user, "content": prompt})
     
     ### データ挿入実行
-    cursor.execute()
+    cursor.execute(prompt)
     conn.commit()
 
 
