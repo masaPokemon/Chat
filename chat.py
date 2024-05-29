@@ -21,5 +21,4 @@ if prompt := st.chat_input("What is up?"):
     st.chat_message("user").markdown(prompt)
     # Add user message to chat history
     st.session_state.messages.append({"role": user, "content": prompt})
-    c.execute("role": user, "content": prompt)
     conn.commit()
