@@ -1,12 +1,16 @@
-import sqlite3
+import numpy as np
 import pandas as pd
+import sqlite3
+import seaborn as sns
 
-#先ほど設定したDBの名前
+from pycaret.datasets import get_data
+#ボストンデータを取得
+df = get_data('boston')
+
+# データベース名とテーブル名
 db_name = 'datasets.db'
+table_name = 'tips'
 
-select_all_sql = 'select ' + '*' + ' from ' + 'tips'
+# SQLiteに書き込む
 with sqlite3.connect(db_name) as conn:
-    df_from_sql = pd.read_sql(select_all_sql, conn)
-
-#列名を取り出す
-df_from_sql_columns = df_from_sql.columns
+    df.to_sql(table_name, conn)
