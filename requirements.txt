@@ -17,4 +17,4 @@ streamlit-player
 streamlit-pandas-profiling
 scikit-learn
 tqdm
-mysql
+mysql-connector-python
