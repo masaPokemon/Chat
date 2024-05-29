@@ -6,4 +6,4 @@ COPY ./requirements.lock /work/
 RUN pip install -r requirements.lock
 
 ENTRYPOINT ["streamlit", "run"]
-CMD ["main.py"]
+CMD ["chat.py"]
