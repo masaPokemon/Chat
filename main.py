@@ -1,20 +1,12 @@
-import streamlit as st
+import sqlite3
+import pandas as pd
 
-import app
-import lib
-import login
+#先ほど設定したDBの名前
+db_name = 'datasets.db'
 
-# Lyaout Change
-st.set_page_config(page_title='owllwo', page_icon='owl',layout="wide")
-lib.config.remove_menu_footer()
+select_all_sql = 'select ' + '*' + ' from ' + 'tips'
+with sqlite3.connect(db_name) as conn:
+    df_from_sql = pd.read_sql(select_all_sql, conn)
 
-# 共通のsessin state ログイン情報
-if 'authentication_status' not in st.session_state:
-    st.session_state['authentication_status'] = None
-
-if __name__ == "__main__":
-    # ログイン認証に成功すればmain_appに切り替え
-    if st.session_state['authentication_status']:
-        app.app()
-    else:
-        obj_auth = login.Login("db/user.db")
+#列名を取り出す
+df_from_sql_columns = df_from_sql.columns
