@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import sqlite3
 import seaborn as sns
-!pip install streamlit
+
 
 from pycaret.datasets import get_data
 #ボストンデータを取得
