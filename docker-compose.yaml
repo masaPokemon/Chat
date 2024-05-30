@@ -1,5 +1,5 @@
 streamlit:
-  command: pip install streamlit pycaret
+  command: pip install streamlit pycaret seaborn
   build: docker/
   ports:
     - "8501:8501"
