@@ -5,3 +5,5 @@ streamlit:
   volumes:
     - .:/work
   command: chat.py
+
+  command: main.py
