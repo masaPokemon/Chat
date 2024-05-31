@@ -20,7 +20,7 @@ def read_barcode(image):
     for obj in decoded_objects:
         return obj.data.decode("utf-8"), obj.rect
     return None, None
-
+i = ""
 if uploaded_file is not None:
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
     image = cv2.imdecode(file_bytes, 1)
@@ -36,8 +36,9 @@ if uploaded_file is not None:
 
         if barcode_data in barcode_database:
             product_name = barcode_database[barcode_data]
+            i = barcode_data
             edited_data = st.text_input("商品の名前を編集", value=product_name)
-
+            
             # データの保存
             if st.button("データを保存"):
                 barcode_database[barcode_data] = edited_data
