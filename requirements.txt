@@ -1,5 +1,4 @@
 openpyxl
 streamlit
-streamlit
 opencv-python-headless 
 pyzbar
