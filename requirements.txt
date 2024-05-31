@@ -1,3 +1,2 @@
-seaborn
-pycaret
+openpyxl
 streamlit
