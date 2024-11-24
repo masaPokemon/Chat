@@ -5,7 +5,4 @@ WORKDIR /app
 # 必要なパッケージをインストール
 RUN pip install pyngrok email
 
-# SMTP サーバーのコードをコピー
-COPY 
-
 CMD ["python", "smtp_server.py"]
